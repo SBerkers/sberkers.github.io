@@ -1,0 +1,211 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+
+    <style>
+        table {
+            border: 10px solid #3E6487;
+
+
+        }
+
+        th,
+        td {
+            font: "Times New Roman";
+            font-size: 50px;
+            color: white;
+            text-align: center;
+            width: 50px;
+            height: 50px;
+
+
+            background-color: #426E90
+        }
+    </style>
+
+    <script>
+        var rijcounter = 1
+        var cell1
+        var cell2
+        var cell3
+        var cell4
+        var cell5
+        var inputWoord
+        var checkWoord
+        var kleurLetter1
+        var kleurLetter2
+        var kleurLetter3
+        var kleurLetter4
+        var kleurLetter5
+        var checkLetter1
+        var checkLetter2
+        var checkLetter3
+        var checkLetter4
+        var checkLetter5
+        var inputLetter1
+        var inputLetter2
+        var inputLetter3
+        var inputLetter3
+        var inputLetter4
+        var inputLetter5
+
+        function fInputKleur(){
+
+            kleurLetter1 = fKleur(checkLetter1, inputLetter1) //returned "Green" of "Blauw"
+            kleurLetter2 = fKleur(checkLetter2, inputLetter2)
+            kleurLetter3 = fKleur(checkLetter3, inputLetter3)
+            kleurLetter4 = fKleur(checkLetter4, inputLetter4)
+            kleurLetter5 = fKleur(checkLetter5, inputLetter5)
+
+
+        }
+        
+        function fKleur(letter1, letter2) {
+
+            if (letter1 == letter2) {
+
+                return "green"
+
+            }
+            else {
+
+                return "#426E90"
+            }
+        }
+
+        function fVol(rij) {
+
+            if (rij == 6) {
+
+                return alert("Vol") 
+
+
+            }
+
+        }
+
+        function fInputCheck(aCheckWoord, aInputWoord) {
+
+            checkLetter1 = aCheckWoord.substring(0, 1)
+            checkLetter2 = aCheckWoord.substring(1, 2)
+            checkLetter3 = aCheckWoord.substring(2, 3)
+            checkLetter4 = aCheckWoord.substring(3, 4)
+            checkLetter5 = aCheckWoord.substring(4, 5)
+
+            inputLetter1 = aInputWoord.substring(0, 1)
+            inputLetter2 = aInputWoord.substring(1, 2)
+            inputLetter3 = aInputWoord.substring(2, 3)
+            inputLetter4 = aInputWoord.substring(3, 4)
+            inputLetter5 = aInputWoord.substring(4, 5)
+        }
+
+        function fRaden() {
+
+            fVol(rijcounter)
+            checkWoord = "Halli";
+            inputWoord = document.getElementById("inputWoord").value;
+
+            fInputCheck(checkWoord, inputWoord);
+            fInputKleur();
+            
+           
+
+            var cell1 = document.getElementById("1" + rijcounter)
+            var cell2 = document.getElementById("2" + rijcounter)
+            var cell3 = document.getElementById("3" + rijcounter)
+            var cell4 = document.getElementById("4" + rijcounter)
+            var cell5 = document.getElementById("5" + rijcounter)
+
+            cell1.innerHTML = inputLetter1
+            cell1.style.backgroundColor = kleurLetter1
+            cell2.innerHTML = inputLetter2
+            cell2.style.backgroundColor = kleurLetter2
+            cell3.innerHTML = inputLetter3
+            cell3.style.backgroundColor = kleurLetter3
+            cell4.innerHTML = inputLetter4
+            cell4.style.backgroundColor = kleurLetter4
+            cell5.innerHTML = inputLetter5
+            cell5.style.backgroundColor = kleurLetter5
+
+
+            rijcounter = rijcounter + 1
+        }
+
+
+
+    </script>
+
+
+
+</head>
+
+<body>
+
+    <input type=text id="inputWoord"><input type=button value="Raden" onclick=fRaden()>
+    <br>
+    <br>
+
+    <table id="table01">
+
+        <tbody>
+
+            <tr>
+                <td id="11" class="circle">&nbsp;</td>
+                <td id="21" class="circle">&nbsp;</td>
+                <td id="31" class="circle">&nbsp;</td>
+                <td id="41" class="circle">&nbsp;</td>
+                <td id="51" class="circle">&nbsp;</td>
+
+
+            </tr>
+            <tr>
+                <td id="12" class="circle">&nbsp;</td>
+                <td id="22" class="circle">&nbsp;</td>
+                <td id="32" class="circle">&nbsp;</td>
+                <td id="42" class="circle">&nbsp;</td>
+                <td id="52" class="circle">&nbsp;</td>
+
+            </tr>
+            <tr>
+                <td id="13" class="circle">&nbsp;</td>
+                <td id="23" class="circle">&nbsp;</td>
+                <td id="33" class="circle">&nbsp;</td>
+                <td id="43" class="circle">&nbsp;</td>
+                <td id="53" class="circle">&nbsp;</td>
+
+            </tr>
+            <tr>
+                <td id="14" class="circle">&nbsp;</td>
+                <td id="24" class="circle">&nbsp;</td>
+                <td id="34" class="circle">&nbsp;</td>
+                <td id="44" class="circle">&nbsp;</td>
+                <td id="54" class="circle">&nbsp;</td>
+
+
+            </tr>
+            <tr>
+                <td id="15" class="circle">&nbsp;</td>
+                <td id="25" class="circle">&nbsp;</td>
+                <td id="35" class="circle">&nbsp;</td>
+                <td id="45" class="circle">&nbsp;</td>
+                <td id="55" class="circle">&nbsp;</td>
+
+            </tr>
+
+        </tbody>
+    </table>
+    <br>
+    <div id="divSpelerADB"></div>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
