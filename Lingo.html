@@ -1,4 +1,5 @@
 <html>
+<Title>Lingo</Title>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
@@ -7,8 +8,18 @@
     <style>
         table {
             border: 10px solid #3E6487;
+            position: fixed;
+            right: 50px;
+            top: 50px;
 
+        }
 
+        div.abovetable{
+
+            position:fixed;
+            right: 200px;
+            top:15px;
+            
         }
 
         th,
@@ -50,8 +61,23 @@
         var inputLetter3
         var inputLetter4
         var inputLetter5
+        var divScoreT1
+        var divScoreT2
+        var team1 = "Team 1"
+        var team2 = "Team 2"
+        var teamADB
+        var divADB
 
-        function fInputKleur(){
+
+        function fStartspel() {
+            team1 = document.getElementById("inputNaamTeam1").value
+            team2 = document.getElementById("inputNaamTeam2").value
+            divADB = document.getElementById("divADB") 
+            teamADB = team1
+            divADB.innerHTML = teamADB + " is aan de beurt!"
+        }
+
+        function fInputKleur() {
 
             kleurLetter1 = fKleur(checkLetter1, inputLetter1) //returned "Green" of "Blauw"
             kleurLetter2 = fKleur(checkLetter2, inputLetter2)
@@ -61,7 +87,7 @@
 
 
         }
-        
+
         function fKleur(letter1, letter2) {
 
             if (letter1 == letter2) {
@@ -74,13 +100,47 @@
                 return "#426E90"
             }
         }
+        function fEindeBeurt() {
 
-        function fVol(rij) {
 
-            if (rij == 6) {
+            if (teamADB == team1) {
+                teamADB = team2;
+            }
+            else {
+                teamADB = team1;
+            }
 
-                return alert("Vol") 
+            divADB.innerHTML = teamADB + " is aan de beurt!"
 
+        }
+        function fWoordGoed(inputWoord, checkWoord) {
+
+
+
+            if (inputWoord == checkWoord) {
+
+                alert("Het woord is goed!")
+                fScoreTeam()
+                fEindeBeurt()
+
+
+
+
+            }
+            else {
+                return rijcounter = rijcounter + 1 // ga een regel naar beneden
+            }
+        }
+
+
+        function fScoreTeam() {
+            if (teamADB == team1) {
+                divScoreT1 = document.getElementById("XdivScoreT1")
+                divScoreT1.innerHTML = Number(divScoreT1.innerHTML) + Number(10);
+            }
+            else {
+                divScoreT2 = document.getElementById("XdivScoreT2");
+                divScoreT2.innerHTML = Number(divScoreT2.innerHTML) + Number(10);
 
             }
 
@@ -99,24 +159,22 @@
             inputLetter3 = aInputWoord.substring(2, 3)
             inputLetter4 = aInputWoord.substring(3, 4)
             inputLetter5 = aInputWoord.substring(4, 5)
+
         }
 
-        function fRaden() {
 
-            fVol(rijcounter)
-            checkWoord = "Halli";
-            inputWoord = document.getElementById("inputWoord").value;
 
-            fInputCheck(checkWoord, inputWoord);
-            fInputKleur();
-            
-           
+        function fGetActiveCell() {
 
-            var cell1 = document.getElementById("1" + rijcounter)
-            var cell2 = document.getElementById("2" + rijcounter)
-            var cell3 = document.getElementById("3" + rijcounter)
-            var cell4 = document.getElementById("4" + rijcounter)
-            var cell5 = document.getElementById("5" + rijcounter)
+            cell1 = document.getElementById("1" + rijcounter)
+            cell2 = document.getElementById("2" + rijcounter)
+            cell3 = document.getElementById("3" + rijcounter)
+            cell4 = document.getElementById("4" + rijcounter)
+            cell5 = document.getElementById("5" + rijcounter)
+
+        }
+
+        function fFillActiveCell() {
 
             cell1.innerHTML = inputLetter1
             cell1.style.backgroundColor = kleurLetter1
@@ -130,7 +188,32 @@
             cell5.style.backgroundColor = kleurLetter5
 
 
-            rijcounter = rijcounter + 1
+        }
+
+        function fRaden() {
+
+            if (rijcounter == 6) {
+
+                alert("Vol")
+
+            }
+            else {
+
+                checkWoord = "Halli";
+                inputWoord = document.getElementById("inputWoord").value;
+
+                fInputCheck(checkWoord, inputWoord); //check input met het gegeven woord
+
+                fInputKleur(); //vul de variabelen met de kleur
+
+                fGetActiveCell(); //get de cellen die gevuld moeten worden 
+
+                fFillActiveCell(); // vul de active cellen
+
+                fWoordGoed(checkWoord, inputWoord)
+
+
+            }
         }
 
 
@@ -142,15 +225,38 @@
 </head>
 
 <body>
+    <h1>Lingo!</h1>
+    Team 1: <input type=text id=inputNaamTeam1>
+    <br>
+    <br>
+    Team 2: <input type=text id=inputNaamTeam2>
+    <br>
+    <br>
+    <input type=button value="Spel Starten" onclick="fStartspel()">
+    <br>
+    <br>
+    <br>
 
-    <input type=text id="inputWoord"><input type=button value="Raden" onclick=fRaden()>
+    
+    <input type=text id="inputWoord"> <input type=button value="Raden" onclick=fRaden()>
     <br>
     <br>
 
+
+    <div>Score Team 1: </div>
+    <div id=XdivScoreT1>0</div>
+    <br>
+
+    <div>Score Team 2: </div>
+    <div id=XdivScoreT2>0</div>
+
+    <br>
+
+   <h2> <div class=abovetable id=divADB></div></h2>
     <table id="table01">
-
+            
         <tbody>
-
+                
             <tr>
                 <td id="11" class="circle">&nbsp;</td>
                 <td id="21" class="circle">&nbsp;</td>
@@ -197,7 +303,7 @@
         </tbody>
     </table>
     <br>
-    <div id="divSpelerADB"></div>
+
 
 
 
