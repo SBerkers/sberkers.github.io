@@ -65,6 +65,8 @@
         var team2 = "Team 2"
         var teamADB
         var divADB
+        var celly
+        var inputLettery
 
 
         function fStartspel() {
@@ -76,7 +78,14 @@
         }
 
 
-
+        function sleep(milliseconds) {
+            var start = new Date().getTime();
+            for (var i = 0; i < 1e7; i++) {
+                if ((new Date().getTime() - start) > milliseconds) {
+                    break;
+                }
+            }
+        }
 
 
 
@@ -139,24 +148,25 @@
         function fFillActiveCell() {
 
 
-            setTimeout(fLegeFunctie(),3000);
-            cell1.innerHTML = inputLetter1;
-            setTimeout(fLegeFunctie(),3000);
-            cell2.innerHTML = inputLetter2;
-            setTimeout(fLegeFunctie(),3000);
-            cell3.innerHTML = inputLetter3;
-            setTimeout(fLegeFunctie(),3000);
-            cell4.innerHTML = inputLetter4;
-            setTimeout(fLegeFunctie(),3000);
-            cell5.innerHTML = inputLetter5;
-            setTimeout(fLegeFunctie(),3000);
+            fFillSelectedCell(cell1,inputLetter1); //vul cel met eerste letter
+            sleep(1000)
+            fFillSelectedCell(cell2,inputLetter2);
+            sleep(1000)
+            fFillSelectedCell(cell3,inputLetter3);
+            sleep(1000)
+            fFillSelectedCell(cell4,inputLetter4);
+            sleep(1000)
+            fFillSelectedCell(cell5,inputLetter5);
+            sleep(1000)
+            
+
 
         }
 
-        function fLegeFunctie(){
+        function fFillSelectedCell(cell,inputLetter) {
             
-            console.log("welkom in de Lege functie");
-                    
+            cell.innerHTML=inputLetter;
+            console.log("cell: "+cell+" is gevuld met " + inputLetter)
         }
 
         function fCheckLibrary() {
@@ -167,17 +177,18 @@
 
         function fColorActiveCell() {
 
-
+            
+            sleep(1000)
             cell1.style.backgroundColor = kleurLetter1
-            //timer
+            sleep(1000)
             cell2.style.backgroundColor = kleurLetter2
-            //timer
+            sleep(1000)
             cell3.style.backgroundColor = kleurLetter3
-            //timer
+            sleep(1000)
             cell4.style.backgroundColor = kleurLetter4
-            //timer
+            sleep(1000)
             cell5.style.backgroundColor = kleurLetter5
-
+            sleep(1000)
 
         }
 
@@ -209,7 +220,7 @@
         }
 
         function fEindeBeurt() {
-    
+
             fLeegmaken();
 
             if (teamADB == team1) { //teamwissel
@@ -224,7 +235,7 @@
 
         function fLeegmaken() {
 
-            
+
             var allecellenArray = [] //array maken met alle cellen 
             allecellenArray = document.getElementsByTagName("td") //alle cellen in de array zetten
 
@@ -260,7 +271,7 @@
 
                 fColorActiveCell(); //geeft kleuren aan actieve cellen
 
-                fWoordGoed(checkWoord, inputWoord) //checkt of het woord goed is, voeg toe aan score en wisselt team, als het woord niet goed is zorgt hij dat de rijcounter +1 gaat
+               fWoordGoed(checkWoord, inputWoord) //checkt of het woord goed is, voeg toe aan score en wisselt team, als het woord niet goed is zorgt hij dat de rijcounter +1 gaat
 
 
             }
