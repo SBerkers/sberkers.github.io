@@ -104,6 +104,8 @@
             inputLetter4 = aInputWoord.substring(3, 4)
             inputLetter5 = aInputWoord.substring(4, 5)
 
+            fInputKleur(); //vul de variabelen met de kleur
+
         }
 
         function fInputKleur() {
@@ -114,7 +116,7 @@
             kleurLetter4 = fKleur(checkLetter4, inputLetter4)
             kleurLetter5 = fKleur(checkLetter5, inputLetter5)
 
-
+            fGetActiveCell(); //get de cellen die gevuld moeten worden 
         }
 
         function fKleur(letter1, letter2) {
@@ -139,6 +141,8 @@
             cell4 = document.getElementById("4" + rijcounter)
             cell5 = document.getElementById("5" + rijcounter)
 
+            fFillActiveCell(); // vul de active cellen
+
         }
 
 
@@ -159,6 +163,7 @@
             fFillSelectedCell(cell5,inputLetter5);
             sleep(1000)
             
+            fCheckLibrary(); //check of woord in woordenboek staat
 
 
         }
@@ -171,7 +176,7 @@
 
         function fCheckLibrary() {
 
-
+            fColorActiveCell(); //geeft kleuren aan actieve cellen
 
         }
 
@@ -190,6 +195,7 @@
             cell5.style.backgroundColor = kleurLetter5
             sleep(1000)
 
+            fWoordGoed(checkWoord, inputWoord) //checkt of het woord goed is, voeg toe aan score en wisselt team, als het woord niet goed is zorgt hij dat de rijcounter +1 gaat
         }
 
         function fWoordGoed(inputWoord, checkWoord) {
@@ -259,19 +265,7 @@
                 checkWoord = "Halli";
                 inputWoord = document.getElementById("inputWoord").value;
 
-                fInputCheck(checkWoord, inputWoord); //check input met het gegeven woord
-
-                fInputKleur(); //vul de variabelen met de kleur
-
-                fGetActiveCell(); //get de cellen die gevuld moeten worden 
-
-                fFillActiveCell(); // vul de active cellen
-
-                //fCheckLibrary(); //check of woord in woordenboek staat
-
-                fColorActiveCell(); //geeft kleuren aan actieve cellen
-
-               fWoordGoed(checkWoord, inputWoord) //checkt of het woord goed is, voeg toe aan score en wisselt team, als het woord niet goed is zorgt hij dat de rijcounter +1 gaat
+                fInputCheck(checkWoord, inputWoord); //check input met het gegeven woord              
 
 
             }
