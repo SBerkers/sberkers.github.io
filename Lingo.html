@@ -65,8 +65,6 @@
         var team2 = "Team 2"
         var teamADB
         var divADB
-        var celly
-        var inputLettery
 
 
         function fStartspel() {
@@ -87,22 +85,64 @@
             }
         }
 
+        function fTypenVullen() {
+
+            inputWoord = document.getElementById("inputWoord").value.toUpperCase();
+
+            inputLetter1 = inputWoord.substring(0, 1);
+            inputLetter2 = inputWoord.substring(1, 2);
+            inputLetter3 = inputWoord.substring(2, 3);
+            inputLetter4 = inputWoord.substring(3, 4);
+            inputLetter5 = inputWoord.substring(4, 5);
+
+
+            fGetActiveCell(); //get de cellen die gevuld moeten worden 
+
+
+        }
+
+        function fGetActiveCell() {
+
+            cell1 = document.getElementById("1" + rijcounter);
+            cell2 = document.getElementById("2" + rijcounter);
+            cell3 = document.getElementById("3" + rijcounter);
+            cell4 = document.getElementById("4" + rijcounter);
+            cell5 = document.getElementById("5" + rijcounter);
+
+            fFillActiveCell(); // vul de active cellen
+
+        }
+
+
+        function fFillActiveCell() {
+            fFillSelectedCell(cell1, inputLetter1); //vul cel met eerste letter
+            // sleep(1000)
+            fFillSelectedCell(cell2, inputLetter2);
+            // sleep(1000)
+            fFillSelectedCell(cell3, inputLetter3);
+            //  sleep(1000)
+            fFillSelectedCell(cell4, inputLetter4);
+            //sleep(1000)
+            fFillSelectedCell(cell5, inputLetter5);
+            // sleep(1000)
+
+        }
 
 
 
         function fInputCheck(aCheckWoord, aInputWoord) {
 
-            checkLetter1 = aCheckWoord.substring(0, 1)
-            checkLetter2 = aCheckWoord.substring(1, 2)
-            checkLetter3 = aCheckWoord.substring(2, 3)
-            checkLetter4 = aCheckWoord.substring(3, 4)
-            checkLetter5 = aCheckWoord.substring(4, 5)
+            checkLetter1 = aCheckWoord.substring(0, 1);
+            checkLetter2 = aCheckWoord.substring(1, 2);
+            checkLetter3 = aCheckWoord.substring(2, 3);
+            checkLetter4 = aCheckWoord.substring(3, 4);
+            checkLetter5 = aCheckWoord.substring(4, 5);
 
-            inputLetter1 = aInputWoord.substring(0, 1)
-            inputLetter2 = aInputWoord.substring(1, 2)
-            inputLetter3 = aInputWoord.substring(2, 3)
-            inputLetter4 = aInputWoord.substring(3, 4)
-            inputLetter5 = aInputWoord.substring(4, 5)
+            inputLetter1 = aInputWoord.substring(0, 1);
+            inputLetter2 = aInputWoord.substring(1, 2);
+            inputLetter3 = aInputWoord.substring(2, 3);
+            inputLetter4 = aInputWoord.substring(3, 4);
+            inputLetter5 = aInputWoord.substring(4, 5);
 
             fInputKleur(); //vul de variabelen met de kleur
 
@@ -110,68 +150,41 @@
 
         function fInputKleur() {
 
-            kleurLetter1 = fKleur(checkLetter1, inputLetter1) //returned "Green" of "Blauw"
-            kleurLetter2 = fKleur(checkLetter2, inputLetter2)
-            kleurLetter3 = fKleur(checkLetter3, inputLetter3)
-            kleurLetter4 = fKleur(checkLetter4, inputLetter4)
-            kleurLetter5 = fKleur(checkLetter5, inputLetter5)
+            kleurLetter1 = fKleur(checkLetter1, inputLetter1); //returned "Green" of "Blauw"
+            kleurLetter2 = fKleur(checkLetter2, inputLetter2);
+            kleurLetter3 = fKleur(checkLetter3, inputLetter3);
+            kleurLetter4 = fKleur(checkLetter4, inputLetter4);
+            kleurLetter5 = fKleur(checkLetter5, inputLetter5);
 
-            fGetActiveCell(); //get de cellen die gevuld moeten worden 
+            fCheckLibrary(); //check of woord in woordenboek staat
+
         }
 
         function fKleur(letter1, letter2) {
 
             if (letter1 == letter2) {
 
-                return "red"
+                return "red";
 
             }
             else {
 
-                return "#426E90"
+                return "#426E90";
             }
         }
 
 
-        function fGetActiveCell() {
-
-            cell1 = document.getElementById("1" + rijcounter)
-            cell2 = document.getElementById("2" + rijcounter)
-            cell3 = document.getElementById("3" + rijcounter)
-            cell4 = document.getElementById("4" + rijcounter)
-            cell5 = document.getElementById("5" + rijcounter)
-
-            fFillActiveCell(); // vul de active cellen
-
-        }
 
 
 
 
 
-        function fFillActiveCell() {
 
 
-            fFillSelectedCell(cell1,inputLetter1); //vul cel met eerste letter
-            sleep(1000)
-            fFillSelectedCell(cell2,inputLetter2);
-            sleep(1000)
-            fFillSelectedCell(cell3,inputLetter3);
-            sleep(1000)
-            fFillSelectedCell(cell4,inputLetter4);
-            sleep(1000)
-            fFillSelectedCell(cell5,inputLetter5);
-            sleep(1000)
-            
-            fCheckLibrary(); //check of woord in woordenboek staat
+        function fFillSelectedCell(cell, inputLetter) {
 
-
-        }
-
-        function fFillSelectedCell(cell,inputLetter) {
-            
-            cell.innerHTML=inputLetter;
-            console.log("cell: "+cell+" is gevuld met " + inputLetter)
+            cell.innerHTML = inputLetter;
+            // console.log("cell: "+cell+" is gevuld met " + inputLetter)
         }
 
         function fCheckLibrary() {
@@ -182,18 +195,18 @@
 
         function fColorActiveCell() {
 
-            
-            sleep(1000)
-            cell1.style.backgroundColor = kleurLetter1
-            sleep(1000)
-            cell2.style.backgroundColor = kleurLetter2
-            sleep(1000)
-            cell3.style.backgroundColor = kleurLetter3
-            sleep(1000)
-            cell4.style.backgroundColor = kleurLetter4
-            sleep(1000)
-            cell5.style.backgroundColor = kleurLetter5
-            sleep(1000)
+
+            //sleep(1000)
+            cell1.style.backgroundColor = kleurLetter1;
+            // sleep(1000)
+            cell2.style.backgroundColor = kleurLetter2;
+            // sleep(1000)
+            cell3.style.backgroundColor = kleurLetter3;
+            // sleep(1000)
+            cell4.style.backgroundColor = kleurLetter4;
+            // sleep(1000)
+            cell5.style.backgroundColor = kleurLetter5;
+            //  sleep(1000)
 
             fWoordGoed(checkWoord, inputWoord) //checkt of het woord goed is, voeg toe aan score en wisselt team, als het woord niet goed is zorgt hij dat de rijcounter +1 gaat
         }
@@ -202,19 +215,19 @@
 
             if (inputWoord == checkWoord) {
 
-                alert("Het woord is goed!")
-                fScoreTeam()
-                fEindeBeurt()
+                alert("Het woord is goed!");
+                fScoreTeam();
+                fEindeBeurt();
             }
             else {
-                return rijcounter = rijcounter + 1 // ga een regel naar beneden
+                return rijcounter = rijcounter + 1;// ga een regel naar beneden
             }
         }
 
 
         function fScoreTeam() {
             if (teamADB == team1) {
-                divScoreT1 = document.getElementById("XdivScoreT1")
+                divScoreT1 = document.getElementById("XdivScoreT1");
                 divScoreT1.innerHTML = Number(divScoreT1.innerHTML) + Number(10);
             }
             else {
@@ -262,8 +275,8 @@
             }
             else {
 
-                checkWoord = "Halli";
-                inputWoord = document.getElementById("inputWoord").value;
+                checkWoord = "Halli".toUpperCase();
+                inputWoord = document.getElementById("inputWoord").value.toUpperCase();
 
                 fInputCheck(checkWoord, inputWoord); //check input met het gegeven woord              
 
@@ -293,7 +306,7 @@
     <br>
 
 
-    <input type=text id="inputWoord"> <input type=button value="Raden" onclick=fRaden()>
+    <input type=text id="inputWoord" oninput= "fTypenVullen()"> <input type=button value="Raden" onclick=fRaden()>
     <br>
     <br>
 
