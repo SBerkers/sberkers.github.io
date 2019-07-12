@@ -42,7 +42,6 @@
         var cell4
         var cell5
         var inputWoord
-        var checkWoord
         var kleurLetter1
         var kleurLetter2
         var kleurLetter3
@@ -53,26 +52,46 @@
         var checkLetter3
         var checkLetter4
         var checkLetter5
+        var checkLetterArray = []
         var inputLetter1
         var inputLetter2
         var inputLetter3
         var inputLetter3
         var inputLetter4
         var inputLetter5
+        var inputLetterArray = []
         var divScoreT1
         var divScoreT2
         var team1 = "Team 1"
         var team2 = "Team 2"
         var teamADB
         var divADB
+        var alleWoordenArray = ['aarde', 'actie', 'aders', 'adres', 'aftel', 'afwas', 'alarm', 'aldus', 'apart', 'appel', 'armen', 'atoom', 'avond', 'baard', 'baden', 'baken', 'balen', 'banen', 'baren', 'basis', 'bazen', 'bazin', 'bedel', 'beden', 'beeld', 'beken', 'beker', 'beleg', 'benen', 'beren', 'beten', 'beter', 'bezem', 'bezig', 'bidet', 'blauw', 'blind', 'bloed', 'bloem', 'blond', 'bomen', 'boren', 'boten', 'boter', 'boven', 'boxen', 'brand', 'breed', 'breng', 'breuk', 'brief', 'broek', 'broer', 'brood', 'buren', 'cacao', 'cadet', 'cavia', 'ceder', 'cello', 'china', 'cloud', 'clown', 'combi', 'conus', 'creme', 'dadel', 'daden', 'dader', 'dagen', 'dalen', 'daler', 'dames', 'daten', 'datum', 'deden', 'degen', 'deken', 'delen', 'deler', 'derde', 'deren', 'dient', 'diner', 'disco', 'doorn', 'dozen', 'draad', 'draaf', 'draai', 'drank', 'dreun', 'drone', 'droog', 'droom', 'drugs', 'druif', 'druil', 'druis', 'duits', 'duren', 'duwen', 'dwaal', 'dwaas', 'dwars', 'dweil', 'dwerg', 'dwing', 'effen', 'egaal', 'eigen', 'elder', 'elven', 'email', 'engel', 'enger', 'enkel', 'falen', 'fauna', 'feeen', 'feest', 'fiets', 'files', 'films', 'flora', 'forel', 'forum', 'freak', 'friet', 'fruit', 'fusie', 'games', 'garen', 'gaven', 'gebak', 'geeuw', 'geluk', 'genre', 'getal', 'geven', 'gewei', 'glans', 'graaf', 'graag', 'graai', 'graal', 'grens', 'groef', 'groen', 'groet', 'grond', 'grote', 'hagel', 'haken', 'halen', 'hamer', 'harde', 'haren', 'heden', 'helen', 'heler', 'hemel', 'heren', 'hobby', 'hoger', 'hoofd', 'horen', 'hotel', 'huren', 'icoon', 'ieder', 'immer', 'index', 'inlog', 'innig', 'inzet', 'jabot', 'jacht', 'jaden', 'jagen', 'jager', 'japon', 'jaren', 'jarig', 'jawel', 'jeans', 'jemig', 'jeugd', 'jicht', 'joint', 'jonas', 'joule', 'jovel', 'kaars', 'kaart', 'kabel', 'kader', 'kamer', 'kater', 'kegel', 'kerel', 'keren', 'kerst', 'klein', 'kleur', 'klimt', 'klink', 'klopt', 'koken', 'koker', 'kolen', 'kopje', 'korst', 'koude', 'kraal', 'kraan', 'krans', 'krant', 'kreet', 'krent', 'kroon', 'kruid', 'kruis', 'kubus', 'kudde', 'kunst', 'laden', 'lader', 'lagen', 'lager', 'laser', 'laten', 'leden', 'leder', 'leeuw', 'legen', 'leger', 'lenen', 'lente', 'lepel', 'leven', 'lever', 'lezen', 'lezer', 'licht', 'lijst', 'lingo', 'links', 'lopen', 'loper', 'lucht', 'luier', 'lunch', 'maagd', 'maand', 'macht', 'maden', 'magen', 'mager', 'maken', 'malen', 'manen', 'maren', 'markt', 'maten', 'mazen', 'meden', 'media', 'meest', 'meeuw', 'meren', 'meter', 'model', 'molen', 'motor', 'naden', 'namen', 'neder', 'negen', 'nemen', 'neven', 'nieuw', 'nodig', 'noord', 'oases', 'ogend', 'omzet', 'onder', 'onwel', 'ophef', 'oppas', 'optel', 'optie', 'orden', 'ouder', 'ovaal', 'ovale', 'paard', 'paars', 'paden', 'palen', 'panda', 'pasta', 'patat', 'pater', 'pauze', 'pegel', 'penis', 'piano', 'pixel', 'pizza', 'plein', 'plint', 'pluto', 'polen', 'polis', 'poten', 'preek', 'prijs', 'prima', 'prins', 'proef', 'puber', 'quant', 'quark', 'queue', 'quilt', 'quota', 'quote', 'racen', 'races', 'radar', 'raden', 'radio', 'ramen', 'razen', 'reden', 'regel', 'regen', 'regio', 'reken', 'rente', 'riool', 'robot', 'roede', 'roken', 'rokje', 'roman', 'rugby', 'ruist', 'ruzie', 'samen', 'scene', 'schap', 'schat', 'schep', 'sedan', 'serie', 'sfeer', 'shirt', 'shows', 'sites', 'sjaal', 'skier', 'sluis', 'smaak', 'smeed', 'smeer', 'smelt', 'snaar', 'sneer', 'snoep', 'sorry', 'spalk', 'speel', 'speer', 'speld', 'spijs', 'sport', 'spuit', 'staal', 'staan', 'staat', 'stand', 'steeg', 'steek', 'steel', 'steer', 'steun', 'stoel', 'stoep', 'stook', 'storm', 'strak', 'super', 'taart', 'tabak', 'taboe', 'tafel', 'taken', 'talen', 'tarwe', 'teder', 'tegel', 'teken', 'telen', 'teler', 'tenen', 'teren', 'terug', 'thuis', 'tiara', 'titel', 'toets', 'trein', 'treur', 'trouw', 'truck', 'typen', 'uiers', 'uilig', 'uiten', 'uitje', 'uiver', 'ultra', 'uniek', 'uppie', 'uraan', 'vader', 'vanaf', 'varen', 'vaten', 'veder', 'vegen', 'veger', 'veins', 'velen', 'veler', 'veren', 'vezel', 'video', 'vieze', 'villa', 'vlees', 'vloer', 'vogel', 'vorst', 'vraag', 'vrede', 'vries', 'vroeg', 'vrouw', 'vuren', 'wagen', 'waren', 'warme', 'water', 'wazig', 'wegen', 'weken', 'wenst', 'weren', 'weten', 'weven', 'wezen', 'wilde', 'woest', 'wonen', 'woord', 'wraak', 'wrede', 'wreed', 'xenon', 'yacht', 'yucca', 'zadel', 'zaden', 'zagen', 'zaken', 'zalig', 'zeden', 'zeeen', 'zeker', 'zenuw', 'zesde', 'zeven', 'zever', 'zicht', 'zomer', 'zwaar', 'zware', 'zwart', 'zweef', 'zweer', 'zweet'
+        ]
+        var checkWoord
 
 
         function fStartspel() {
             team1 = document.getElementById("inputNaamTeam1").value
             team2 = document.getElementById("inputNaamTeam2").value
             divADB = document.getElementById("divADB")
-            teamADB = team1
-            divADB.innerHTML = teamADB + " mag beginnen!"
+            teamADB = team1;
+            divADB.innerHTML = teamADB + " mag beginnen!";
+            fSelectRandomWoord();
+            fShowFirstLetter();
+        }
+
+        function fSelectRandomWoord() {
+
+            randomgetal = Math.random();
+            var i = randomgetal * alleWoordenArray.length
+            var y = Math.floor(i)
+
+            checkWoord = alleWoordenArray[y].toUpperCase();
+       
+
+
+
         }
 
 
@@ -83,6 +102,14 @@
                     break;
                 }
             }
+        }
+
+        function fShowFirstLetter() {
+
+            var FirstLetterGiven = checkWoord.substring(0, 1);
+            cell1 = document.getElementById("1" + rijcounter);
+            cell1.innerHTML = FirstLetterGiven
+
         }
 
         function fTypenVullen() {
@@ -128,6 +155,15 @@
 
         }
 
+        function fRaden() {
+
+                inputWoord = document.getElementById("inputWoord").value.toUpperCase();
+
+                fInputCheck(checkWoord, inputWoord); //check input met het gegeven woord              
+
+
+            }
+        
 
 
         function fInputCheck(aCheckWoord, aInputWoord) {
@@ -137,12 +173,14 @@
             checkLetter3 = aCheckWoord.substring(2, 3);
             checkLetter4 = aCheckWoord.substring(3, 4);
             checkLetter5 = aCheckWoord.substring(4, 5);
+            checkLetterArray = [checkLetter1, checkLetter2, checkLetter3, checkLetter4, checkLetter5];
 
             inputLetter1 = aInputWoord.substring(0, 1);
             inputLetter2 = aInputWoord.substring(1, 2);
             inputLetter3 = aInputWoord.substring(2, 3);
             inputLetter4 = aInputWoord.substring(3, 4);
             inputLetter5 = aInputWoord.substring(4, 5);
+            inputLetterArray = [inputLetter1, inputLetter2, inputLetter3, inputLetter4, inputLetter5];
 
             fInputKleur(); //vul de variabelen met de kleur
 
@@ -150,12 +188,16 @@
 
         function fInputKleur() {
 
-            kleurLetter1 = fKleur(checkLetter1, inputLetter1); //returned "Green" of "Blauw"
+            kleurLetter1 = fKleur(checkLetter1, inputLetter1);
+            
             kleurLetter2 = fKleur(checkLetter2, inputLetter2);
+           
             kleurLetter3 = fKleur(checkLetter3, inputLetter3);
+           
             kleurLetter4 = fKleur(checkLetter4, inputLetter4);
+           
             kleurLetter5 = fKleur(checkLetter5, inputLetter5);
-
+            
             fCheckLibrary(); //check of woord in woordenboek staat
 
         }
@@ -167,15 +209,16 @@
                 return "red";
 
             }
-            else {
+     
+            for (var i = 0; i < checkLetterArray.length; i++) {
+        
+                if (letter2 == checkLetterArray[i]) {
+                    return "#CCCC00";
+                }
 
-                return "#426E90";
             }
+            return "#426E90"
         }
-
-
-
-
 
 
 
@@ -184,7 +227,7 @@
         function fFillSelectedCell(cell, inputLetter) {
 
             cell.innerHTML = inputLetter;
-            // console.log("cell: "+cell+" is gevuld met " + inputLetter)
+
         }
 
         function fCheckLibrary() {
@@ -220,8 +263,45 @@
                 fEindeBeurt();
             }
             else {
-                return rijcounter = rijcounter + 1;// ga een regel naar beneden
+                fRowDown();
             }
+        }
+
+        function fRowDown() {
+
+            rijcounter = rijcounter + 1;// ga een regel naar beneden
+            if (rijcounter == 6) {
+                alert("Helaas, je hebt het woord niet geraden, het andere team is aan de beurt")
+                fEindeBeurt();
+            }
+            else {
+                fShowFirstLetter();
+                fShowOtherLetters();
+            }
+        }
+
+        function fShowOtherLetters() {
+
+            if (kleurLetter2 == "red") {
+                cell2 = document.getElementById("2" + rijcounter);
+                cell2.innerHTML = checkLetter2
+            }
+            if (kleurLetter3 == "red") {
+                cell3 = document.getElementById("3" + rijcounter);
+                cell3.innerHTML = checkLetter3
+            }
+            if (kleurLetter4 == "red") {
+                cell4 = document.getElementById("4" + rijcounter);
+                cell4.innerHTML = checkLetter4
+            }
+            if (kleurLetter5 == "red") {
+                cell5 = document.getElementById("5" + rijcounter);
+                cell5.innerHTML = checkLetter5
+            }
+
+
+
+
         }
 
 
@@ -250,7 +330,10 @@
             }
 
             divADB.innerHTML = teamADB + " is aan de beurt!"
+            fSelectRandomWoord();
+            fShowFirstLetter();
         }
+
 
         function fLeegmaken() {
 
@@ -266,23 +349,7 @@
 
         }
 
-        function fRaden() {
 
-            if (rijcounter == 6) {
-
-                alert("Vol")
-
-            }
-            else {
-
-                checkWoord = "Halli".toUpperCase();
-                inputWoord = document.getElementById("inputWoord").value.toUpperCase();
-
-                fInputCheck(checkWoord, inputWoord); //check input met het gegeven woord              
-
-
-            }
-        }
 
 
 
@@ -306,7 +373,7 @@
     <br>
 
 
-    <input type=text id="inputWoord" oninput= "fTypenVullen()"> <input type=button value="Raden" onclick=fRaden()>
+    <input type=text id="inputWoord" oninput="fTypenVullen()"> <input type=button value="Raden" onclick=fRaden()>
     <br>
     <br>
 
