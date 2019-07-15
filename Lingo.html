@@ -35,36 +35,36 @@
     </style>
 
     <script>
-        var rijcounter = 1
-        var cellLetters = []
-        var inputWoord
-        var kleurLetters = []
-        var checkLetters = []
-        var inputLetters = []
-        var divScoreT1
-        var divScoreT2
-        var team1 = "Team 1"
-        var team2 = "Team 2"
-        var teamADB
-        var divADB
+        var rijcounter = 1;
+        var cellLetters = [];
+        var inputWoord;
+        var kleurLetters = [];
+        var checkLetters = [];
+        var inputLetters = [];
+        var divScoreT1;
+        var divScoreT2;
+        var team1 = "Team 1";
+        var team2 = "Team 2";
+        var teamADB;
+        var divADB;
         var alleWoordenArray = ['aarde', 'actie', 'aders', 'adres', 'aftel', 'afwas', 'alarm', 'aldus', 'apart', 'appel', 'armen', 'atoom', 'avond', 'baard', 'baden', 'baken', 'balen', 'banen', 'baren', 'basis', 'bazen', 'bazin', 'bedel', 'beden', 'beeld', 'beken', 'beker', 'beleg', 'benen', 'beren', 'beten', 'beter', 'bezem', 'bezig', 'bidet', 'blauw', 'blind', 'bloed', 'bloem', 'blond', 'bomen', 'boren', 'boten', 'boter', 'boven', 'boxen', 'brand', 'breed', 'breng', 'breuk', 'brief', 'broek', 'broer', 'brood', 'buren', 'cacao', 'cadet', 'cavia', 'ceder', 'cello', 'china', 'cloud', 'clown', 'combi', 'conus', 'creme', 'dadel', 'daden', 'dader', 'dagen', 'dalen', 'daler', 'dames', 'daten', 'datum', 'deden', 'degen', 'deken', 'delen', 'deler', 'derde', 'deren', 'dient', 'diner', 'disco', 'doorn', 'dozen', 'draad', 'draaf', 'draai', 'drank', 'dreun', 'drone', 'droog', 'droom', 'drugs', 'druif', 'druil', 'druis', 'duits', 'duren', 'duwen', 'dwaal', 'dwaas', 'dwars', 'dweil', 'dwerg', 'dwing', 'effen', 'egaal', 'eigen', 'elder', 'elven', 'email', 'engel', 'enger', 'enkel', 'falen', 'fauna', 'feeen', 'feest', 'fiets', 'files', 'films', 'flora', 'forel', 'forum', 'freak', 'friet', 'fruit', 'fusie', 'games', 'garen', 'gaven', 'gebak', 'geeuw', 'geluk', 'genre', 'getal', 'geven', 'gewei', 'glans', 'graaf', 'graag', 'graai', 'graal', 'grens', 'groef', 'groen', 'groet', 'grond', 'grote', 'hagel', 'haken', 'halen', 'hamer', 'harde', 'haren', 'heden', 'helen', 'heler', 'hemel', 'heren', 'hobby', 'hoger', 'hoofd', 'horen', 'hotel', 'huren', 'icoon', 'ieder', 'immer', 'index', 'inlog', 'innig', 'inzet', 'jabot', 'jacht', 'jaden', 'jagen', 'jager', 'japon', 'jaren', 'jarig', 'jawel', 'jeans', 'jemig', 'jeugd', 'jicht', 'joint', 'jonas', 'joule', 'jovel', 'kaars', 'kaart', 'kabel', 'kader', 'kamer', 'kater', 'kegel', 'kerel', 'keren', 'kerst', 'klein', 'kleur', 'klimt', 'klink', 'klopt', 'koken', 'koker', 'kolen', 'kopje', 'korst', 'koude', 'kraal', 'kraan', 'krans', 'krant', 'kreet', 'krent', 'kroon', 'kruid', 'kruis', 'kubus', 'kudde', 'kunst', 'laden', 'lader', 'lagen', 'lager', 'laser', 'laten', 'leden', 'leder', 'leeuw', 'legen', 'leger', 'lenen', 'lente', 'lepel', 'leven', 'lever', 'lezen', 'lezer', 'licht', 'lijst', 'lingo', 'links', 'lopen', 'loper', 'lucht', 'luier', 'lunch', 'maagd', 'maand', 'macht', 'maden', 'magen', 'mager', 'maken', 'malen', 'manen', 'maren', 'markt', 'maten', 'mazen', 'meden', 'media', 'meest', 'meeuw', 'meren', 'meter', 'model', 'molen', 'motor', 'naden', 'namen', 'neder', 'negen', 'nemen', 'neven', 'nieuw', 'nodig', 'noord', 'oases', 'ogend', 'omzet', 'onder', 'onwel', 'ophef', 'oppas', 'optel', 'optie', 'orden', 'ouder', 'ovaal', 'ovale', 'paard', 'paars', 'paden', 'palen', 'panda', 'pasta', 'patat', 'pater', 'pauze', 'pegel', 'penis', 'piano', 'pixel', 'pizza', 'plein', 'plint', 'pluto', 'polen', 'polis', 'poten', 'preek', 'prijs', 'prima', 'prins', 'proef', 'puber', 'quant', 'quark', 'queue', 'quilt', 'quota', 'quote', 'racen', 'races', 'radar', 'raden', 'radio', 'ramen', 'razen', 'reden', 'regel', 'regen', 'regio', 'reken', 'rente', 'riool', 'robot', 'roede', 'roken', 'rokje', 'roman', 'rugby', 'ruist', 'ruzie', 'samen', 'scene', 'schap', 'schat', 'schep', 'sedan', 'serie', 'sfeer', 'shirt', 'shows', 'sites', 'sjaal', 'skier', 'sluis', 'smaak', 'smeed', 'smeer', 'smelt', 'snaar', 'sneer', 'snoep', 'sorry', 'spalk', 'speel', 'speer', 'speld', 'spijs', 'sport', 'spuit', 'staal', 'staan', 'staat', 'stand', 'steeg', 'steek', 'steel', 'steer', 'steun', 'stoel', 'stoep', 'stook', 'storm', 'strak', 'super', 'taart', 'tabak', 'taboe', 'tafel', 'taken', 'talen', 'tarwe', 'teder', 'tegel', 'teken', 'telen', 'teler', 'tenen', 'teren', 'terug', 'thuis', 'tiara', 'titel', 'toets', 'trein', 'treur', 'trouw', 'truck', 'typen', 'uiers', 'uilig', 'uiten', 'uitje', 'uiver', 'ultra', 'uniek', 'uppie', 'uraan', 'vader', 'vanaf', 'varen', 'vaten', 'veder', 'vegen', 'veger', 'veins', 'velen', 'veler', 'veren', 'vezel', 'video', 'vieze', 'villa', 'vlees', 'vloer', 'vogel', 'vorst', 'vraag', 'vrede', 'vries', 'vroeg', 'vrouw', 'vuren', 'wagen', 'waren', 'warme', 'water', 'wazig', 'wegen', 'weken', 'wenst', 'weren', 'weten', 'weven', 'wezen', 'wilde', 'woest', 'wonen', 'woord', 'wraak', 'wrede', 'wreed', 'xenon', 'yacht', 'yucca', 'zadel', 'zaden', 'zagen', 'zaken', 'zalig', 'zeden', 'zeeen', 'zeker', 'zenuw', 'zesde', 'zeven', 'zever', 'zicht', 'zomer', 'zwaar', 'zware', 'zwart', 'zweef', 'zweer', 'zweet'
-        ]
-        var checkWoord
-        var spelGestart = "Nee"
+        ];
+        var checkWoord;
+        var spelGestart = "Nee";
 
 
         function fStartspel() {
             team1 = document.getElementById("inputNaamTeam1").value
             if (team1 == '') {
-                alert("vul een naam in voor Team 1")
+                alert("vul een naam in voor Team 1");
             }
             team2 = document.getElementById("inputNaamTeam2").value
             if (team2 == '') {
-                alert("vul een naam in voor Team 2")
+                alert("vul een naam in voor Team 2");
             }
-            divADB = document.getElementById("divADB")
+            divADB = document.getElementById("divADB");
             teamADB = team1;
-            spelGestart = "Ja"
+            spelGestart = "Ja";
             divADB.innerHTML = teamADB + " mag beginnen!";
             fSelectRandomWoord();
             fShowFirstLetter();
@@ -72,11 +72,11 @@
 
         function fSelectRandomWoord() {
             randomgetal = Math.random();
-            var i = randomgetal * alleWoordenArray.length
-            var y = Math.floor(i)
+            var i = randomgetal * alleWoordenArray.length;
+            var y = Math.floor(i);
             checkWoord = alleWoordenArray[y].toUpperCase();
-            checkLetters = checkWoord.split("")
-            console.log(checkWoord)
+            checkLetters = checkWoord.split("");
+            console.log(checkWoord);
         }
 
 
@@ -141,7 +141,7 @@
         }
 
         function fKleur(letter1, letter2) {
-         if (letter1 == letter2) {
+            if (letter1 == letter2) {
                 return "red";
             }
             for (var i = 0; i < 5; i++) {
@@ -231,8 +231,6 @@
         }
     </script>
 
-
-
 </head>
 
 <body>
@@ -247,37 +245,26 @@
     <br>
     <br>
     <br>
-
-
     <input type=text id="inputWoord" oninput="fTypenVullen()"> <input type=button value="Raden" onclick=fRaden()>
     <br>
     <br>
-
-
     <div>Score Team 1: </div>
     <div id=XdivScoreT1>0</div>
     <br>
-
     <div>Score Team 2: </div>
     <div id=XdivScoreT2>0</div>
-
     <br>
-
     <h2>
         <div class=abovetable id=divADB></div>
     </h2>
     <table id="table01">
-
         <tbody>
-
             <tr>
                 <td id="11" class="circle">&nbsp;</td>
                 <td id="21" class="circle">&nbsp;</td>
                 <td id="31" class="circle">&nbsp;</td>
                 <td id="41" class="circle">&nbsp;</td>
                 <td id="51" class="circle">&nbsp;</td>
-
-
             </tr>
             <tr>
                 <td id="12" class="circle">&nbsp;</td>
@@ -285,7 +272,6 @@
                 <td id="32" class="circle">&nbsp;</td>
                 <td id="42" class="circle">&nbsp;</td>
                 <td id="52" class="circle">&nbsp;</td>
-
             </tr>
             <tr>
                 <td id="13" class="circle">&nbsp;</td>
@@ -293,7 +279,6 @@
                 <td id="33" class="circle">&nbsp;</td>
                 <td id="43" class="circle">&nbsp;</td>
                 <td id="53" class="circle">&nbsp;</td>
-
             </tr>
             <tr>
                 <td id="14" class="circle">&nbsp;</td>
@@ -301,8 +286,6 @@
                 <td id="34" class="circle">&nbsp;</td>
                 <td id="44" class="circle">&nbsp;</td>
                 <td id="54" class="circle">&nbsp;</td>
-
-
             </tr>
             <tr>
                 <td id="15" class="circle">&nbsp;</td>
@@ -310,21 +293,8 @@
                 <td id="35" class="circle">&nbsp;</td>
                 <td id="45" class="circle">&nbsp;</td>
                 <td id="55" class="circle">&nbsp;</td>
-
             </tr>
-
         </tbody>
     </table>
-    <br>
-
-
-
-
-
-
-
-
-
 </body>
-
 </html>
