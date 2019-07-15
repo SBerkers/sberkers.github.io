@@ -41,6 +41,8 @@
         var kleurLetters = [];
         var checkLetters = [];
         var inputLetters = [];
+        var goedeletters = [];
+        var goedelettersg = [];
         var divScoreT1;
         var divScoreT2;
         var team1 = "Team 1";
@@ -125,110 +127,145 @@
             }
             else {
                 inputWoord = document.getElementById("inputWoord").value.toUpperCase();
-                fInputCheck(); //check input met het gegeven woord              
+                fKleurLetters(); //check input met het gegeven woord              
             }
         }
 
-        function fInputCheck() {
-            fInputKleur(); //vul de variabelen met de kleur
-        }
 
-        function fInputKleur() {
+
+        function fKleurLetters() {
             for (var i = 0; i < 5; i++) {
-                kleurLetters[i] = fKleur(checkLetters[i], inputLetters[i])
+                kleurLetters[i] = fRood(checkLetters[i], inputLetters[i]) //eerst de letters rood kleuren
             }
-            fCheckLibrary(); //check of woord in woordenboek staat
+            for (var x = 0; x < 5; x++) {
+
+                kleurLetters[x] = fGeel(checkLetters[x], inputLetters[x], x) // checken welke letters geel zijn
+
+            }
+            console.log(goedeletters)
+
+            fColorActiveCell()
         }
 
-        function fKleur(letter1, letter2) {
+        function fRood(letter1, letter2) {
+
+
             if (letter1 == letter2) {
+                goedeletters.push(letter2) //goede letters in array stoppen
                 return "red";
             }
-            for (var i = 0; i < 5; i++) {
-                if (letter2 == checkLetters[i]) {
-                    return "#CCCC00";
+            else {
+                return "#426E90"
+            }
+        }
+
+        function fGeel(letter1, letter2, positie) {
+
+
+            for (var i = 0; i < 5; i++) { //for loopje die enerzijds de meegegeven letter pakt, anderzijds de letters in het goede woord pakt
+                if (letter2 == checkLetters[i]) { //één van de inputletters wordt vergeleken met alle checkLetters
+                    if (positie == i) //check of de positie van de inputletter gelijk is aan die van de checkletter (en dus al rood is/had moeten zijn, want goede letter op goede plek)
+                    {
+                        return "red";
+                    }
+                    for (var y = 0; y < goedeletters.length; y++) {//als de letter niet rood had moeten zijn, zit hij dus wel in het goede woord, eerst een check of de letter niet al elders in het woord geraden is;
+
+                        if (letter2 == goedeletters[y]) { //als de letter al in de goedeletters staat, hoeft hij niet geel te worden
+                            return "#426E90"
+
+                        }
+                        else {
+                            if (letter2 == goedelettersg[y]) { // als de letter al geel is, hoeft hij niet nogmaals geel te worden
+                                return "#426E90"
+
+                            }
+                            else { return "CCCC00"
+                            push.goedelettersg(letter2) } // als de letter wel in het woord voorkomt, niet op de goede positie staat, nog niet rood was, en nog niet geel was, wordt hij geel en aan de array toegevoegd.
+                        }
+                    }
+
+                        return "#426E90";
+                    }
                 }
             }
-            return "#426E90"
-        }
 
-        function fCheckLibrary() {
-            fColorActiveCell(); //geeft kleuren aan actieve cellen
-        }
 
-        function fColorActiveCell() {
-            for (var i = 0; i < cellLetters.length; i++) {
-                cellLetters[i].style.backgroundColor = kleurLetters[i];
-            }
-            fWoordGoed() //checkt of het woord goed is, voeg toe aan score en wisselt team, als het woord niet goed is zorgt hij dat de rijcounter +1 gaat
-        }
 
-        function fWoordGoed() {
-            if (inputWoord == checkWoord) {
-                alert("Het woord is goed!");
-                fScoreTeam();
-                fEindeBeurt();
-            }
-            else {
-                fRowDown();
-            }
-        }
 
-        function fRowDown() {
-            rijcounter = rijcounter + 1;// ga een regel naar beneden
-            if (rijcounter == 6) {
-                alert("Helaas, je hebt het woord niet geraden, het andere team is aan de beurt. Het goede woord was: " + checkWoord)
-                fEindeBeurt();
+            function fColorActiveCell() {
+                for (var i = 0; i < cellLetters.length; i++) {
+                    cellLetters[i].style.backgroundColor = kleurLetters[i];
+                }
+                goedeletters = [] //maakt goedeletters weer leeg zodat deze niet onnodig gevuld blijft
+                fWoordGoed() //checkt of het woord goed is, voeg toe aan score en wisselt team, als het woord niet goed is zorgt hij dat de rijcounter +1 gaat
             }
-            else {
+
+            function fWoordGoed() {
+                if (inputWoord == checkWoord) {
+                    alert("Het woord is goed!");
+                    fScoreTeam();
+                    fEindeBeurt();
+                }
+                else {
+                    fRowDown();
+                }
+            }
+
+            function fRowDown() {
+                rijcounter = rijcounter + 1;// ga een regel naar beneden
+                if (rijcounter == 6) {
+                    alert("Helaas, je hebt het woord niet geraden, het andere team is aan de beurt. Het goede woord was: " + checkWoord)
+                    fEindeBeurt();
+                }
+                else {
+                    fShowFirstLetter();
+                    fShowOtherLetters();
+                }
+            }
+
+            function fShowOtherLetters() {
+                for (var i = 1; i < kleurLetters.length; i++) {
+                    if (kleurLetters[i] == "red") {
+                        var y = i + 1
+                        cellLetters[i] = document.getElementById("" + y + rijcounter);
+                        cellLetters[i].innerHTML = checkLetters[i]
+                    }
+                }
+            }
+
+            function fScoreTeam() {
+                if (teamADB == team1) {
+                    divScoreT1 = document.getElementById("XdivScoreT1");
+                    divScoreT1.innerHTML = Number(divScoreT1.innerHTML) + Number(10);
+                }
+                else {
+                    divScoreT2 = document.getElementById("XdivScoreT2");
+                    divScoreT2.innerHTML = Number(divScoreT2.innerHTML) + Number(10);
+                }
+            }
+
+            function fEindeBeurt() {
+                fLeegmaken();
+                if (teamADB == team1) { //teamwissel
+                    teamADB = team2;
+                }
+                else {
+                    teamADB = team1;
+                }
+                divADB.innerHTML = teamADB + " is aan de beurt!"
+                fSelectRandomWoord();
                 fShowFirstLetter();
-                fShowOtherLetters();
             }
-        }
 
-        function fShowOtherLetters() {
-            for (var i = 1; i < kleurLetters.length; i++) {
-                if (kleurLetters[i] == "red") {
-                    var y = i + 1
-                    cellLetters[i] = document.getElementById("" + y + rijcounter);
-                    cellLetters[i].innerHTML = checkLetters[i]
+            function fLeegmaken() {
+                var allecellenArray = [] //array maken met alle cellen 
+                allecellenArray = document.getElementsByTagName("td") //alle cellen in de array zetten
+                for (var x = 0; x < allecellenArray.length; x++) { //for loopje zodat alle cellen weer leeg worden en blauw
+                    allecellenArray[x].innerHTML = "&nbsp;";
+                    allecellenArray[x].style = "";
                 }
+                rijcounter = 1 //rijcouter weer op 1 zodat de volgende speler weer op de bovenste rij begint
             }
-        }
-
-        function fScoreTeam() {
-            if (teamADB == team1) {
-                divScoreT1 = document.getElementById("XdivScoreT1");
-                divScoreT1.innerHTML = Number(divScoreT1.innerHTML) + Number(10);
-            }
-            else {
-                divScoreT2 = document.getElementById("XdivScoreT2");
-                divScoreT2.innerHTML = Number(divScoreT2.innerHTML) + Number(10);
-            }
-        }
-
-        function fEindeBeurt() {
-            fLeegmaken();
-            if (teamADB == team1) { //teamwissel
-                teamADB = team2;
-            }
-            else {
-                teamADB = team1;
-            }
-            divADB.innerHTML = teamADB + " is aan de beurt!"
-            fSelectRandomWoord();
-            fShowFirstLetter();
-        }
-
-        function fLeegmaken() {
-            var allecellenArray = [] //array maken met alle cellen 
-            allecellenArray = document.getElementsByTagName("td") //alle cellen in de array zetten
-            for (var x = 0; x < allecellenArray.length; x++) { //for loopje zodat alle cellen weer leeg worden en blauw
-                allecellenArray[x].innerHTML = "&nbsp;";
-                allecellenArray[x].style = "";
-            }
-            rijcounter = 1 //rijcouter weer op 1 zodat de volgende speler weer op de bovenste rij begint
-        }
     </script>
 
 </head>
@@ -297,4 +334,5 @@
         </tbody>
     </table>
 </body>
+
 </html>
