@@ -119,6 +119,7 @@
 
         function fFillSelectedCell(cell, inputLetter) {
             cell.innerHTML = inputLetter;
+
         }
 
         function fRaden() {
@@ -143,9 +144,9 @@
                 kleurLetters[x] = fGeel(checkLetters[x], inputLetters[x], x) // checken welke letters geel zijn
 
             }
-            console.log("Goedeletters: " + goedeletters + "  GoedeLettersg: " + goedelettersg)
 
-            fColorActiveCell()
+            (function(x){setTimeout(fColorActiveCell(),3000)})(x)
+            
         }
 
         function fRood(letter1, letter2) {
@@ -161,71 +162,45 @@
         }
 
         function fGeel(letter1, letter2, positie) {
-
-            console.log("In fGeel met letter " + letter2);
-            console.log(goedeletters)
             for (var i = 0; i < 5; i++) { //for loopje die enerzijds de meegegeven letter pakt, anderzijds de letters in het goede woord pakt
-                console.log("in de for loop van fGeel");
                 if (letter2 == checkLetters[i]) { //één van de inputletters wordt vergeleken met alle checkLetters
-                    console.log("letter 2: " + letter2 + "== gelijk aan checkletters[i]: " + checkLetters[i]);
-                    console.log("positie: " + positie + " i: " + i);
                     if (positie == i) //check of de positie van de inputletter gelijk is aan die van de checkletter (en dus al rood is/had moeten zijn, want goede letter op goede plek)
                     {
-                        console.log(letter2 + " heb ik (nogmaals) rood gemaakt");
                         return "red";
                     }
                     else {
                         for (var y = 0; y < goedeletters.length; y++) {//als de letter niet rood had moeten zijn, zit hij dus wel in het goede woord, eerst een check of de letter niet al elders in het woord geraden is;
-                            console.log("Goedeletters Y = " + goedeletters[y])
                             if (letter2 == goedeletters[y]) { //als de letter al in de goedeletters staat, hoeft hij niet geel te worden
-                                console.log(letter2 + " hoeft niet geel want staat al in goedeletters");
                                 if (letter2 == letter1) {
-                                    console.log("deze moet nog steeds rood zijn")
                                     return "red"
                                 }
                                 else {
-                                    console.log("deze wordt nu blauw")
                                     return "#426E90";
                                 }
                             }
                         }
                         for (var p = 0; p < goedelettersg.length; p++) {
                             if (letter2 == goedelettersg[y]) { // als de letter al geel is, hoeft hij niet nogmaals geel te worden
-                                console.log(letter2 + " hoeft niet geel want staat al in goedelettersg (dus is al geel)");
                                 return "#426E90";
                             }
                         }
-
-                        console.log(letter2 + " heb ik nu geel gemaakt");
                         goedelettersg.push(letter2);
                         return "CCCC00";
-
                     } // als de letter wel in het woord voorkomt, niet op de goede positie staat, nog niet rood was, en nog niet geel was, wordt hij geel en aan de array toegevoegd.
                 }
             }
-            console.log(letter2 + " blijft gewoon blauw")
-        return "#426E90";
+            return "#426E90";
         }
-       
-       
-        
-
-
-
-
-
-
-
-
-
 
         function fColorActiveCell() {
-            for (var i = 0; i < cellLetters.length; i++) {
-                cellLetters[i].style.backgroundColor = kleurLetters[i];
-            }
+            for (var x = 0 ; x < 5 ; x++){
+            (function (x) {
+                setTimeout(function(){cellLetters[x].style.backgroundColor = kleurLetters[x]},300*x)})(x)  
+                }
+
             goedeletters = [];//maakt goedeletters weer leeg zodat deze niet onnodig gevuld blijft
-            goedelettersg = []
-            fWoordGoed() //check;t of het woord goed is, voeg toe aan score en wisselt team, als het woord niet goed is zorgt hij dat de rijcounter +1 gaat
+            goedelettersg = [];
+            (function(x){setTimeout(fWoordGoed(),3000)})(x) //checkt of het woord goed is, voeg toe aan score en wisselt team, als het woord niet goed is zorgt hij dat de rijcounter +1 gaat
         }
 
         function fWoordGoed() {
@@ -294,6 +269,11 @@
             }
             rijcounter = 1 //rijcouter weer op 1 zodat de volgende speler weer op de bovenste rij begint
         }
+
+        
+
+
+
     </script>
 
 </head>
