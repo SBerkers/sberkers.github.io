@@ -53,16 +53,19 @@
         ];
         var checkWoord;
         var spelGestart = "Nee";
+  
 
 
         function fStartspel() {
             team1 = document.getElementById("inputNaamTeam1").value
             if (team1 == '') {
                 alert("vul een naam in voor Team 1");
+                return
             }
             team2 = document.getElementById("inputNaamTeam2").value
             if (team2 == '') {
                 alert("vul een naam in voor Team 2");
+                return
             }
             divADB = document.getElementById("divADB");
             teamADB = team1;
@@ -72,15 +75,22 @@
             fShowFirstLetter();
         }
 
+
+
         function fSelectRandomWoord() {
             randomgetal = Math.random();
             var i = randomgetal * alleWoordenArray.length;
             var y = Math.floor(i);
             checkWoord = alleWoordenArray[y].toUpperCase();
             checkLetters = checkWoord.split("");
-            console.log(checkWoord);
+
         }
 
+        function fEnterSubmits() {
+
+        
+
+        }
 
         function sleep(milliseconds) {
             var start = new Date().getTime();
@@ -145,8 +155,8 @@
 
             }
 
-            (function(x){setTimeout(fColorActiveCell(),3000)})(x)
-            
+            (function (x) { setTimeout(fColorActiveCell(), 3000) })(x)
+
         }
 
         function fRood(letter1, letter2) {
@@ -193,17 +203,19 @@
         }
 
         function fColorActiveCell() {
-            for (var x = 0 ; x < 5 ; x++){
-            (function (x) {
-                setTimeout(function(){cellLetters[x].style.backgroundColor = kleurLetters[x]},300*x)})(x)  
-                }
-
-            goedeletters = [];//maakt goedeletters weer leeg zodat deze niet onnodig gevuld blijft
-            goedelettersg = [];
-            (function(x){setTimeout(fWoordGoed(),3000)})(x) //checkt of het woord goed is, voeg toe aan score en wisselt team, als het woord niet goed is zorgt hij dat de rijcounter +1 gaat
+            for (var x = 0; x < 5; x++) {
+                (function (x) {
+                    setTimeout(function () { cellLetters[x].style.backgroundColor = kleurLetters[x] }, 300 * x)
+                })(x)
+            }
+            setTimeout(fWoordGoed, 2000)//checkt of het woord goed is, voeg toe aan score en wisselt team, als het woord niet goed is zorgt hij dat de rijcounter +1 gaat
         }
 
         function fWoordGoed() {
+
+            goedeletters = [];//maakt goedeletters weer leeg zodat deze niet onnodig gevuld blijft
+            goedelettersg = [];
+
             if (inputWoord == checkWoord) {
                 alert("Het woord is goed!");
                 fScoreTeam();
@@ -270,7 +282,7 @@
             rijcounter = 1 //rijcouter weer op 1 zodat de volgende speler weer op de bovenste rij begint
         }
 
-        
+
 
 
 
@@ -286,11 +298,12 @@
     Team 2: <input type=text id=inputNaamTeam2>
     <br>
     <br>
-    <input type=button value="Spel Starten" onclick="fStartspel()">
+    <input type=button value="Spel Starten" id="bStartSpel" onclick="fStartspel()">
     <br>
     <br>
     <br>
-    <input type=text id="inputWoord" oninput="fTypenVullen()"> <input type=button value="Raden" onclick=fRaden()>
+    <input type=text id="inputWoord" oninput="fTypenVullen()"> <input type=button id="bRaden" value="Raden"
+        onclick=fRaden()>
     <br>
     <br>
     <div>Score Team 1: </div>
