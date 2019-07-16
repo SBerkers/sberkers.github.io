@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <script>
+       
+
+       function fKnopklik()
+       {
+        var gvRequest = new XMLHttpRequest();
+
+        gvRequest.open('GET',"https://api.thecatapi.com/v1/images/search" , true);
+        gvRequest.setRequestHeader("x-api-key","ce3c7fe4-4788-44c6-883b-5a9f3829b30b")
+
+        gvRequest.onload =function()
+        {   
+            
+            var uitkomst = JSON.parse(gvRequest.responseText);
+           console.log(uitkomst[0].url);
+           var kattenfotoURL = uitkomst[0].url
+           var html = '<img src="'+kattenfotoURL+'">';
+            deDIV = document.getElementById("plaatje")
+            deDIV.innerHTML = html
+            
+        }
+        gvRequest.send();
+                    
+       
+       }
+
+      
+
+
+        
+        
+    </script>
+</head>
+
+<body>
+
+    <div id=plaatje>Klik voor een kattenplaatje!</div>
+    <br>
+    <button id=bTest onclick="fKnopklik()">Klikken</button>
+
+
+</body>
+
+
+
+</html>
