@@ -1,0 +1,236 @@
+
+<!-- saved from url=(0037)https://stefberkers.nl/4opeenrij.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style>
+:root{
+        --hover-color:grey
+}
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          background:black
+          
+        }
+        th, td {
+          
+          text-align: left;
+        }
+        .circle {
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        font-size: 10px;
+        text-align: center;
+        background:white
+        }
+     
+        td:hover{
+
+        background-color:var(--hover-color)            
+
+        }
+        
+        
+        </style>
+
+
+
+</head><body>Naam speler 1:<input text="" id="NaamSpeler1" value="Speler 1">   <input type="color" id="kleurspeler1" value="#00ff00">
+<br>
+<br>
+Naam speler 2:<input text="" id="NaamSpeler2" value="Speler 2">   <input type="color" id="kleurspeler2" value="#FF0000">
+<br>
+<br>
+<input type="button" onclick="startspel()" value="Spelen!">
+<br> 
+<br>
+<input type="button" onclick="restart()" value="Opnieuw Beginnen">
+<br>
+<br>
+
+
+<table id="table01">
+
+<tbody><tr>
+    <td id="a6" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="b6" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="c6" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="d6" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="e6" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="f6" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="g6" onclick="cellclick(id)" class="circle">&nbsp;</td>
+   
+</tr>
+<tr>
+    <td id="a5" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="b5" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="c5" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="d5" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="e5" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="f5" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="g5" onclick="cellclick(id)" class="circle">&nbsp;</td>
+</tr><tr>
+    <td id="a4" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="b4" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="c4" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="d4" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="e4" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="f4" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="g4" onclick="cellclick(id)" class="circle">&nbsp;</td>
+</tr><tr>
+    <td id="a3" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="b3" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="c3" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="d3" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="e3" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="f3" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="g3" onclick="cellclick(id)" class="circle">&nbsp;</td>
+</tr><tr>
+    <td id="a2" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="b2" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="c2" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="d2" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="e2" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="f2" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="g2" onclick="cellclick(id)" class="circle">&nbsp;</td>
+</tr><tr>
+    <td id="a1" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="b1" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="c1" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="d1" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="e1" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="f1" onclick="cellclick(id)" class="circle">&nbsp;</td>
+    <td id="g1" onclick="cellclick(id)" class="circle">&nbsp;</td>
+</tr>
+
+</tbody></table>
+<br>
+<div id="divSpelerADB"></div>
+
+
+<script>
+        var Speler1 = "green" ;//kleuren aangeven van spelers
+        var Speler2 = "red"  ;  //kleuren aangeven van speler
+        var SpelerADB = '' ; //speler buiten de functie aanmaken zodat deze veranderd in de functie
+        var NaamSpeler1 ;
+        var NaamSpeler2 ;
+        var NaamSpelerADB = '';
+        var gevuldarray = [''];
+        var divADB = document.getElementById("divSpelerADB");
+        var Spelgestart = "Nee"
+        
+        
+    function startspel()
+        {
+        NaamSpeler1 = document.getElementById("NaamSpeler1").value;
+        NaamSpeler2 = document.getElementById("NaamSpeler2").value;
+        Speler1 = document.getElementById("kleurspeler1").value;
+        Speler2 = document.getElementById("kleurspeler2").value;
+        SpelerADB = Speler1
+        NaamSpelerADB = NaamSpeler1;
+        divADB.innerHTML = NaamSpelerADB + " mag beginnen!";
+        Spelgestart = "Ja"
+        
+        
+        }
+        
+     function cellclick(aID)
+        {
+       
+        if(Spelgestart == "Nee"){
+            alert("Vul namen in en druk op Spelen!")
+        
+        }
+        else{
+        
+        
+        kolomID = aID.substring(0,1); //Haalt de kolomletter uit het id
+        
+        
+        
+            for (var i=1; i<7 ;i++){ //loopt per kolom alle rijen zodat hij ze allemaal heeft
+            
+            
+            
+                var SelectedKolomID = document.getElementById(kolomID + i);
+                
+                
+                console.log("Cell die naar Isgevuld gaat: " + SelectedKolomID.id)
+                
+                var cellVolOfLeeg = isgevuld(SelectedKolomID.id)
+                console.log(cellVolOfLeeg)
+                
+               if(cellVolOfLeeg == "Leeg")
+                {
+                    console.log("Lege cel gevonden, nu vullen!")
+                    SelectedKolomID.style.backgroundColor = SpelerADB;
+                    gevuldarray.push(SelectedKolomID.id);
+        
+                    if(SpelerADB==Speler1){
+                     SpelerADB=Speler2;
+                     NaamSpelerADB=NaamSpeler2;
+                     
+
+                    }
+                    else{
+                    SpelerADB=Speler1;
+                    NaamSpelerADB=NaamSpeler1;
+                    
+                    }
+        
+                    divADB.innerHTML = NaamSpelerADB + " is aan de beurt!"
+                    
+        
+                    break
+               }
+            
+                }
+                
+                //end for
+        }
+        }
+
+    function isgevuld(forID){
+        
+        
+        for(var x=0; x < gevuldarray.length ;x++){
+               var VolOfLeeg = "Leeg"
+               var IDgevuldCheck = gevuldarray[x];
+               
+               if(forID == IDgevuldCheck) {      
+                VolOfLeeg = "Vol"
+                console.log(forID + " = " +VolOfLeeg)
+                return VolOfLeeg
+                 } 
+        
+                  
+               }
+               console.log(forID+" " + VolOfLeeg) 
+               return VolOfLeeg
+        }
+        
+
+
+function restart(){
+
+
+
+        for (var n=1; n < gevuldarray.length; n++ ){
+
+            var IDsleegmaken = gevuldarray[n]
+            var leegtemakencell = document.getElementById(IDsleegmaken);
+            leegtemakencell.style.backgroundColor = "white"
+        }
+        gevuldarray = [''];
+        
+
+}
+
+
+        </script>
+
+
+
+
+
+
+</body></html>
