@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ganzenbord</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+   <style>
+       div.dice{
+       font-size:6rem}
+   </style>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <script>
+    
+         function fThrowDice(){
+             
+            var vThrow1 = Math.floor(Math.random() * 6 ) + 1;
+            var vDice1 = vThrow1 - 1;
+            var vThrow2 = Math.floor(Math.random() * 6 ) + 1;
+            var vDice2 = vThrow2 - 1;
+          
+            var vThrowSum = parseInt(vThrow1) + (vThrow2);
+     
+            var totalThrown = document.getElementById('dTotal');
+            totalThrown.innerHTML = vThrowSum;
+            var diceDiv1 = document.getElementById('dDice1');
+            console.log("&#x268"+vDice1.toString()+ ";")
+            diceDiv1.innerHTML= "&#x268"+vDice1.toString()+ ";";
+            var diceDiv2 = document.getElementById('dDice2');
+            diceDiv2.innerHTML= "&#x268"+vDice2.toString()+ ";";
+            
+            
+         }
+    </script>
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+        <div class="columns">
+          <div class="column">
+                <h1 class="title">
+                        Ganzenbord
+                      </h1> 
+          <div id='dDice1' class="dice">&#x2685;</div><div id='dDice2' class="dice">&#x2685;</div>  
+             
+                <div id='dTotal' class="title">0</div>
+                      </div>
+          <div class="column">
+        <p class="subtitle">
+        Klik hier om te gooien
+      </p>
+          <button onclick="fThrowDice()" class="button is-primary">Gooien</button>
+      
+          </div>
+          <div class="column">
+       
+           <p>
+          Speler 2: <div id=dSpeler2>0</div>
+      </p>
+      <br>
+      <p>
+          Speler 1: <div id=dSpeler1>0</div>
+      </p>
+          </div>
+          
+        </div>
+      
+      
+      
+      
+
+      
+     
+     
+    
+    </div>
+  </section>
+  </body>
+</html>
