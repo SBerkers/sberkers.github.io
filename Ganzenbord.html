@@ -10,20 +10,19 @@
         span.dice {
             font-size: 6rem
         }
-       
     </style>
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
     <script>
-        
+
         var vSpeed = 2500
         var vbThrow;
         var vbStartGame;
         var vbStopGame;
         var vdDice1;
         var vdDice2;
-        var vMoreGooses =0;
+        var vMoreGooses = 0;
         document.onreadystatechange = fOnPageLoad;
         var vThrowSum = 0;
         var vPosPlayer1 = 0;
@@ -36,9 +35,10 @@
         var vdPlayer2;
         var vThrow1;
         var vThrow2;
-        var vPrevPos = 0 ;
+        var vPrevPos1 = 0;
+        var vPrevPos2 = 0; 
         var vPassed63 = false;
-        
+
 
         function fOnPageLoad() {
 
@@ -48,7 +48,7 @@
             vpNarrator = document.getElementById('pTextStart');
             vdDice1 = document.getElementById('dDice1');
             vdDice2 = document.getElementById('dDice2');
-       
+
             vdPlayer1 = document.getElementById('dPlayer1');
             vdPlayer2 = document.getElementById('dPlayer2');
             viPixel = document.getElementById('iPixel');
@@ -87,20 +87,26 @@
         }
 
         function fThrowDice() {
+            var viDice1 = document.getElementById('iDice1')
+            var viDice2 = document.getElementById('iDice2')
+
+
             vbThrow.disabled = true
             vbStopGame.disabled = true
-            
-            vThrow1 = Math.floor(Math.random() * 6) + 1;
-            //vThrow1=3
+
+            //vThrow1 = viDice1.value;
+             vThrow1 = Math.floor(Math.random() * 6) + 1;
+
             var vDice1 = vThrow1 - 1;
-            vThrow2 = Math.floor(Math.random() * 6) + 1;
-            //vThrow2 = 4
+           // vThrow2 = viDice2.value;
+             vThrow2 = Math.floor(Math.random() * 6) + 1;
+
             var vDice2 = vThrow2 - 1;
             vThrowSum = parseInt(vThrow1) + parseInt(vThrow2);
             vdDice1.innerHTML = "&#x268" + vDice1.toString() + ";";
             vdDice2.innerHTML = "&#x268" + vDice2.toString() + ";";
-            
-            setTimeout(fPositionGoose(vThrowSum), vSpeed/10)
+
+            setTimeout(fPositionGoose(vThrowSum), vSpeed / 10)
 
         }
 
@@ -110,9 +116,9 @@
                 vPosPlayer1 = vPosPlayer1 + nPlaces;
                 fAnimateValue(vdPlayer1, vPosPlayer1 - nPlaces, vPosPlayer1, vSpeed)
                 setTimeout(function () {
-                fApplyRules(vPosPlayer1);
-                }, vSpeed*1.1)
-                
+                    fApplyRules(vPosPlayer1);
+                }, vSpeed * 1.1)
+
 
             }
             else if (vWhichPlayer == vPlayer2) {
@@ -120,8 +126,8 @@
                 fAnimateValue(vdPlayer2, vPosPlayer2 - nPlaces, vPosPlayer2, vSpeed)
                 setTimeout(function () {
                     fApplyRules(vPosPlayer2);
-                }, vSpeed*1.1)
-                
+                }, vSpeed * 1.1)
+
             }
             else return
         }
@@ -156,61 +162,61 @@
 
 
         function fApplyRules(xPosition) {
-            
-            
-            
+
+
+
             switch (xPosition) {
-                
+
                 case 6:
-                    
-                vpNarrator.innerHTML = "Je bent op de brug, ga verder naar 12";
-                setTimeout(function(){fPositionGoose(6)},vSpeed/10);
-                    
-                    
-                break;
-                
+
+                    vpNarrator.innerHTML = "Je bent op de brug, ga verder naar 12";
+                    setTimeout(function () { fPositionGoose(6) }, vSpeed / 10);
+
+
+                    break;
+
                 case 42:
-                    
-                vpNarrator.innerHTML = "Pixel is naar buiten gevlucht, maar wordt gevangen! Ga terug naar 37.";
-                setTimeout(function(){fPositionGoose(-5)},vSpeed/10);
-                    
-                    
-                break;
-                
-               case 58:
-                    
-                vpNarrator.innerHTML = "Dode Pixel :( Ga terug naar start.";
-                setTimeout(function(){fPositionGoose(-58)},vSpeed/10);
-                imgPixel.src = "./images/pixeldood.jpg"
-                viPixel.style.visibility='visible'
-                    
-                    
-                break;
-                
+
+                    vpNarrator.innerHTML = "Pixel is naar buiten gevlucht, maar wordt gevangen! Ga terug naar 37.";
+                    setTimeout(function () { fPositionGoose(-5) }, vSpeed / 10);
+
+
+                    break;
+
+                case 58:
+
+                    vpNarrator.innerHTML = "Dode Pixel :( Ga terug naar start.";
+                    setTimeout(function () { fPositionGoose(-58) }, vSpeed / 10);
+                    imgPixel.src = "./images/pixeldood.jpg"
+                    viPixel.style.visibility = 'visible'
+
+
+                    break;
+
                 case 9:
-                    
-                if (vThrowSum ==9){
-                    
-                    if (vThrow1 == 6 || vThrow1 == 3 ){
-                        
-                        vpNarrator.innerHTML = "Blije Pixel! Je mag in eens door naar plek 26";
-                        fDisplayImage();
-                        setTimeout(function(){fPositionGoose(17)},vSpeed/10);
-                        
+
+                    if (vThrowSum == 9) {
+
+                        if (vThrow1 == 6 || vThrow1 == 3) {
+
+                            vpNarrator.innerHTML = "Blije Pixel! Je mag in eens door naar plek 26";
+                            fDisplayImage();
+                            setTimeout(function () { fPositionGoose(17) }, vSpeed / 10);
+
+                        }
+                        else if (vThrow1 == 5 || vThrow1 == 4) {
+                            vpNarrator.innerHTML = "Blije Pixel! Je mag ineens door naar plek 53";
+                            fDisplayImage();
+                            setTimeout(function () { fPositionGoose(44) }, vSpeed / 10);
+
+
+                        }
                     }
-                    else if(vThrow1==5 || vThrow1==4){
-                        vpNarrator.innerHTML = "Blije Pixel! Je mag ineens door naar plek 53";
-                        fDisplayImage();
-                        setTimeout(function(){fPositionGoose(44)},vSpeed/10);
-                        
-                        
+                    else {
+                        fLittleGoose();
                     }
-                }
-                else {
-                    fLittleGoose();
-                }
-                    
-                break;
+
+                    break;
                 case 5:
                 case 14:
                 case 18:
@@ -223,19 +229,19 @@
                 case 50:
                 case 54:
                 case 59:
-                    
-                    
-                    
+
+
+
                     fLittleGoose();
-                            
-                break;
+
+                    break;
 
                 case 63:
                     vpNarrator.innerHTML = vWhichPlayer + " heeft gewonnen!";
                     vbStopGame.innerHTML = "Opnieuw Beginnen";
                     vbStopGame.disabled = false;
                     vbThrow.disabled = false;
-                    vMoreGooses=0;
+                    vMoreGooses = 0;
                     viPixel.style.visibility = 'hidden';
                     break;
 
@@ -253,58 +259,60 @@
                     var vPlacesBack = ((xPosition - 63) * -2)
                     fPositionGoose(vPlacesBack)
                     vPassed63 = true
-                    
-                break;
+
+                    break;
 
 
                 default:
-                    
-                    vMoreGooses=0;
-                    setTimeout(function(){
-                        if(vWhichPlayer == vPlayer1 && xPosition == vPosPlayer2){
-                            
-                        vpNarrator.innerHTML="Er past maar 1 Pixel tegelijk op deze Krabpaal, ga terug naar je oude plek"
-                         setTimeout(function(){fPositionGoose(vPrevPos1-xPosition)},vSpeed/10);
-                        vPassed63 = false;
+
+                    vMoreGooses = 0;
+                    setTimeout(function () {
+                        if (vWhichPlayer == vPlayer1 && xPosition == vPosPlayer2) {
+
+                            vpNarrator.innerHTML = "Er past maar 1 Pixel tegelijk op deze Krabpaal, ga terug naar je oude plek"
+                            setTimeout(function () { fPositionGoose(vPrevPos1 - xPosition) }, vSpeed / 10);
+                            vPassed63 = false;
                         }
-                        else if(vWhichPlayer == vPlayer2 && xPosition ==vPosPlayer1){
-                            
-                         vpNarrator.innerHTML="Er past maar 1 Pixel tegelijk op deze Krabpaal, ga terug naar je oude plek" 
-                            console.log(xPosition+ " = xPosition")
-                            console.log(vPrevPos2+ " = vPrevPos2")
-                          setTimeout(function(){fPositionGoose(vPrevPos2 - xPosition)},vSpeed/10);
-                        
+                        else if (vWhichPlayer == vPlayer2 && xPosition == vPosPlayer1) {
+
+                            vpNarrator.innerHTML = "Er past maar 1 Pixel tegelijk op deze Krabpaal, ga terug naar je oude plek"
+                            console.log(xPosition + " = xPosition")
+                            console.log(vPrevPos2 + " = vPrevPos2")
+                            setTimeout(function () { fPositionGoose(vPrevPos2 - xPosition) }, vSpeed / 10);
+
                         }
-                        else{
-                        vPassed63 = false;
-                        fChangePlayer(xPosition)}
-                    }, vSpeed/2);
+                        else {
+                            vPassed63 = false;
+                            fChangePlayer(xPosition)
+                        }
+                    }, vSpeed / 2);
                     viPixel.style.visibility = 'hidden';
             }
         }
-        
-        function fLittleGoose(){
-            if(vPassed63==true){
-            
-            vpNarrator.innerHTML = "Je bent op een Pixel gekomen, je gaat nogmaals" + vThrowSum + " achteruit.";
-            
-            fDisplayImage();
-            setTimeout(function(){fPositionGoose(-vThrowSum)},vSpeed/10);
-            return
-            }
-                else if(vMoreGooses==0){
-                vpNarrator.innerHTML = "Je bent op een Pixel gekomen, je gaat nogmaals " + vThrowSum + " vooruit.";
-                }
-                    else if (vMoreGooses>0){
-                    vpNarrator.innerHTML = "Je bent wéér op een Pixel gekomen, je gaat weer "+ vThrowSum + " vooruit!";
-                    }
-                    
-                vMoreGooses = vMoreGooses + 1;
-              
+
+        function fLittleGoose() {
+            if (vPassed63 == true) {
+                 console.log("in Achteruit")   
+                vpNarrator.innerHTML = "Je bent op een Pixel gekomen, je gaat nogmaals" + vThrowSum + " achteruit.";
+                    console.log(vThrowSum + "vThrowSum")
                 fDisplayImage();
-                setTimeout(function(){fPositionGoose(vThrowSum)},vSpeed/10);
-                
-            
+                setTimeout(function () { fPositionGoose(-vThrowSum) }, vSpeed / 10);
+                return
+            }
+            else if (vPassed63 == false && vMoreGooses == 0) {
+                vpNarrator.innerHTML = "Je bent op een Pixel gekomen, je gaat nogmaals " + vThrowSum + " vooruit.";
+                console.log("in Vooruit")
+            }
+            else if (vPassed63 == false && vMoreGooses > 0) {
+                vpNarrator.innerHTML = "Je bent wéér op een Pixel gekomen, je gaat weer " + vThrowSum + " vooruit!";
+            }
+
+            vMoreGooses = vMoreGooses + 1;
+
+            fDisplayImage();
+            setTimeout(function () { fPositionGoose(vThrowSum) }, vSpeed / 10);
+
+
         }
 
         function fChangePlayer(xPosition) {
@@ -320,7 +328,7 @@
 
             }
             else if (vWhichPlayer == vPlayer2) {
-                
+
                 vPosPlayer2 = xPosition
                 vPrevPos2 = xPosition
                 vWhichPlayer = vPlayer1;
@@ -330,14 +338,14 @@
             }
             else return
         }
-            function fDisplayImage() {
-                
-            var num = Math.floor(Math.random()*5);
-            imgPixel.src = "./images/pixel"+num+".jpg"
-            viPixel.style.visibility='visible'
-          
+        function fDisplayImage() {
+
+            var num = Math.floor(Math.random() * 5);
+            imgPixel.src = "./images/pixel" + num + ".jpg"
+            viPixel.style.visibility = 'visible'
+
             return
-            }
+        }
 
 
 
@@ -347,35 +355,37 @@
 <body>
     <section class="section">
         <div class="container">
-            
+
             <div class="columns is-mobile">
-            <div class="column">
-                        <h1 class="title">
-                        Pixelbord 
-                        
+                <div class="column">
+                    <h1 class="title">
+                        Pixelbord
+
                         <figure class="image is-128x128">
-                        <img class="is-rounded" src="./images/pixel4.jpg">
-                        </figure>  
-                        </h1>
-                        
+                            <img class="is-rounded" src="./images/pixel4.jpg">
+                        </figure>
+                    </h1>
+
                     <button id="bThrow" onclick="fThrowDice()" class="button is-primary">Gooien</button>
                     <button id="bStartGame" onclick="fStartGame()" class="button is-primary">Spel Starten</button>
                     <button id="bStopGame" onclick="fStopGame()" class="button is-danger">Spel Stoppen</button>
                     <div class="subtitle">
                         <br>
                         Speler 1: <div id=dPlayer1 class='subtitle'>0</div>
-                        
+
                         Speler 2: <div id=dPlayer2 class='subtitle'>0</div>
                     </div>
-            
-                        
-                   
-                
-                
-                
-            </div>
+
+
+
+
+
+
+                </div>
                 <div class="column is-mobile">
-                    <span id='dDice1' class="dice"></span>      
+                    <span id='dDice1' class="dice"></span>
+                <!----    <input id=iDice1>Dice 1</input>
+                    <input id=iDice2>Dice 2</input> -->
                     <span id='dDice2' class="dice"></span>
                     <figure id="iPixel" class="image is-16by9">
                         <img id="imgPixel" src="./images/pixel1.jpg">
@@ -383,10 +393,10 @@
                     <p id="pTextStart" class="subtitle">
                         Druk op Start Spel om te beginnen.
                     </p>
-                    
+
                 </div>
-       
-                            
+
+
 
 
             </div>
